@@ -1,0 +1,46 @@
+rules:
+- id: HLO001
+  name: Change me!. Look inside '.spectral/rules/sample.yml'
+  description: This is a custom detector
+  tags:
+  - base # keep this to be included by default
+  - custom-tag # make your own tag
+  applies_to:
+  - ".*app\\.js$"
+  severity: error
+  pattern_group:
+    aggregate: or
+    scope: text
+    patterns:
+    - pattern: ".*your own detector.*"
+      pattern_type: multi
+      # test_token:
+      # - on: 1
+      #   score: 0.6
+      # test_regex_prematch:
+      # - on: 0
+      #   pattern: "client_?[sS]ecret"
+      # - on: 0
+      #   pattern: "[a-z0-9.]+\\.auth0\\.com"
+- id: HLO002
+  name: Try '$ spectral discover --from github-repo && spectral scan' (export GITHUB_TOKEN first)
+  tags:
+  - base # keep this to be included by default
+  - custom-tag # make your own tag
+  applies_to:
+  - ".*app\\.js$"
+  severity: error
+  pattern_group:
+    aggregate: or
+    scope: text
+    patterns:
+    - pattern: ".*try github repo.*"
+      pattern_type: multi
+      # test_token:
+      # - on: 1
+      #   score: 0.6
+      # test_regex_prematch:
+      # - on: 0
+      #   pattern: "client_?[sS]ecret"
+      # - on: 0
+      #   pattern: "[a-z0-9.]+\\.auth0\\.com"
