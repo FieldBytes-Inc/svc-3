@@ -8,7 +8,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Install
-        run: curl -L "https://get.spectralops.io/latest/x/sh?dsn=$SPECTRAL_DSN" | sh
-      - name: Scan
+      - name: Setup Preflight
+        uses: SpectralOps/setup-preflight-action@v1
+        with:
+          preflight-version: "1.1.4"
+      - name: Spectral Install
+        run: curl -L "https://get.spectralops.io/latest/x/sh?dsn=$SPECTRAL_DSN" | preflight run https://sigs.spectralops.io/spectral
+      - name: Spectral Scan
         run: $HOME/.spectral/spectral scan --ok --include-tags base,iac,audit
